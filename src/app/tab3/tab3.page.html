@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Let's data custom
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,44 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Let's data custom</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-row>
+    <ion-col>
+      <ion-list lines="full">
+        <h3>People added but with custom layout</h3>
+        <ion-row *ngIf="hideForm">
+          <ion-col>
+            <ion-item>
+              <ion-label position="floating">Name</ion-label>
+              <!-- la directiva de ngModel vincula el valor que el usuario digite en el input a los controles 
+              HTML, es decir está asignando el valor del campo al valor de la variable creada con Angular -->
+              <ion-input type="text" placeholder="Type your name" [(ngModel)]="person_name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Age</ion-label>
+              <ion-input type="number" placeholder="Type your age" [(ngModel)]="person_age"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-button type="button" (click)="saveEdit()" expand="block" color="success">Modify data</ion-button>
+            <ion-button type="button" (click)="cancelData()" expand="block" color="danger">Cancel data</ion-button>
+          </ion-col>
+        </ion-row>
+        <!-- la directiva  de ngFor permite crear varios elementos HTML basado en el recorrido
+        de un arreglo de datos -->
+        <ion-item *ngFor="let person of persons">
+          <ion-button slot="start" color="warning" (click)="showEdit(person.person_id)">
+            Modify
+          </ion-button>
+          <ion-label position="floating" color="tertiary">Name of person</ion-label>
+          <h6>{{person.person_name}} </h6>
+          <ion-label position="floating" color="tertiary">Age of person</ion-label>
+          <h6>{{person.person_age}} </h6>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>

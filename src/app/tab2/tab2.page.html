@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Let's see data!
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,30 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Let's see data!</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-row>
+    <ion-col>
+      <ion-list>
+        <h3>People added</h3>
+        <!-- la directiva  de ngFor permite crear varios elementos HTML basado en el recorrido
+        de un arreglo de datos -->
+        <ion-item *ngFor="let person of persons">
+          <ion-label>
+            <!-- se accede a los valores que trae el arreglo de datos -->
+            <h6>Name: {{person.person_name}} </h6>
+          </ion-label>
+          <ion-label>
+            <h6>Age: {{person.person_age}} </h6>
+          </ion-label>
+          <div class="item-note">
+            <ion-button (click)="delete(person.person_id)" type="button" color="danger">Delete</ion-button>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
 </ion-content>
